@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>About Mditor</title>
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../node_modules/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+
+<p></p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-4">
+            <p>&nbsp;</p>
+            <img src="../img/about.png" class="img img-responsive" alt="Logo">
+        </div>
+        <div class="col-xs-8">
+            <h2>Mditor v. 0.1.0</h2>
+            <p>
+                <strong>By</strong> Javier López Úbeda &lt;<a href="mailto:jlopezcur@gmail.com">jlopezcur@gmail.com</a>&gt;
+            </p>
+            <h4>Credits:</h4>
+            <p>
+                <a href="http://electron.atom.io/">Electron</a>,
+                <a href="https://ace.c9.io">ACE Editor</a>,
+                <a href="http://getbootstrap.com/">Bootstrap</a>,
+                <a href="http://vuejs.org/">Vue.js</a>,
+                <a href="https://jquery.com/">jQuery</a>,
+                <a href="https://github.com/chjj/marked">Marked</a> &
+                <a href="https://fortawesome.github.io/Font-Awesome/">Font Awesome</a>.
+            </p>
+            <p>
+                <strong>Icon made by</strong> <a href="http://www.freepik.com" target="_blank" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<p></p>
+
+<script>window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');</script>
+<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<script>
+var remote = require('remote');
+var shell = remote.require('shell');
+$(function () {
+    $('a').click(function (e) {
+        shell.openExternal($(this).attr('href'));
+        return false;
+    })
+})
+</script>
+
+</body>
+</html>

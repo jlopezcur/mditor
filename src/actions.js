@@ -24,6 +24,15 @@ function loadFile(fileName) {
     });
 }
 
+function showAboutDialog() {
+    var win = new BrowserWindow({ width: 600, height: 250, show: false, frame: false, alwaysOnTop: true, resizable: false, type: 'splash' });
+    win.loadURL('file://' + __dirname + '/src/pages/about.html');
+    win.on('closed', function() {
+        win = null;
+    });
+    win.show();
+}
+
 // Save actions
 
 function saveDocument() {

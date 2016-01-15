@@ -1,4 +1,5 @@
 var remote = require('remote');
+const BrowserWindow = remote.BrowserWindow;
 var Menu = remote.require('menu');
 var dialog = remote.require('dialog');
 var fs = require('fs');
@@ -6,7 +7,7 @@ var fs = require('fs');
 var template = [{
     label: 'File',
     submenu: [
-        { label: 'New Window', accelerator: 'Ctrl+N' },
+        { label: 'New Window', accelerator: 'Ctrl+N', click: function () { window.open('index.html'); } },
         { label: 'Load file...', accelerator: 'Ctrl+O', click: loadFileDialog },
         { type: 'separator' },
         { label: 'Save as...', accelerator: 'Ctrl+Shift+S', click: saveFileDialog },
@@ -34,7 +35,7 @@ var template = [{
 },{
     label: 'Help',
     submenu: [
-
+        { label: 'About...', click: showAboutDialog }
     ]
 }];
 

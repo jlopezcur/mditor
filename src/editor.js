@@ -1,7 +1,7 @@
 var vm = new Vue({
     el: 'body',
     data: {
-        input: '# Welcome to Mditor\nThe Markdown minimalistic editor.',
+        input: '# Welcome to Mditor\nThe Markdown mini editor.',
         editor: null,
         showPreview: true,
         ver: '0.1.0',
@@ -25,6 +25,7 @@ var vm = new Vue({
             this.input = this.editor.getValue();
         }, this));
 
+        // On cursor 'change'
         this.editor.on('changeSelection', $.proxy(function(e) {
             this.updateStatus();
         }, this));
@@ -34,34 +35,19 @@ var vm = new Vue({
         marked: marked
     },
     methods: {
-        undo: function () {
-            this.editor.undo();
-        },
-        redo: function () {
-            this.editor.redo();
-        },
-        addLink: function () {
-            this.editor.insert('[text](http://)');
-        },
-        addImage: function () {
-            this.editor.insert('![text](http://)');
-        },
-        setBold: function () {
-            this.wrap('**', '**');
-        },
-        setItalic: function () {
-            this.wrap('*', '*');
-        },
-        setHeader: function (n) {
-            var tag = new Array(n+1).join('#') + ' ';
-            this.prepend(tag);
-        },
-        setUnordererList: function () {
-            this.prepend('* ');
-        },
-        setOrdererList: function () {
-            this.prepend('1. ');
-        },
+        // Toolbar actions
+        undo: function () { this.editor.undo(); },
+        redo: function () { this.editor.redo(); },
+        addLink: function () { this.editor.insert('[text](http://)'); },
+        addImage: function () { this.editor.insert('![text](http://)'); },
+        setBold: function () { this.wrap('**', '**'); },
+        setItalic: function () { this.wrap('*', '*'); },
+        setHeader: function (n) { var tag = new Array(n+1).join('#') + ' '; this.prepend(tag); },
+        setUnordererList: function () { this.prepend('* '); },
+        setOrdererList: function () { this.prepend('1. '); },
+        togglePreview: function () { this.showPreview = !this.showPreview; },
+
+        // Tools for editor
         prepend: function (text) {
             var cursor = this.editor.getCursorPosition();
             this.editor.navigateLineStart();
@@ -80,9 +66,8 @@ var vm = new Vue({
             this.editor.moveCursorToPosition(cursor);
             this.editor.focus();
         },
-        togglePreview: function () {
-            this.showPreview = !this.showPreview;
-        },
+
+        // Methods for files
         loadContent: function (text) {
             this.editor.setValue(text);
             this.editor.navigateFileStart();
@@ -92,10 +77,12 @@ var vm = new Vue({
         saveContent: function () {
             return this.input;
         },
+
+        // Status
         updateStatus: function () {
             var cursor = this.editor.getCursorPosition();
             var fileDescription = (currentFileName != null ? currentFileName : 'Unkown');
-            this.status = '<' + fileDescription + '> ' + cursor.row + ':' + cursor.column;
+            this.status = '<' + fileDescription + '> ' + (cursor.row + 1) + ':' + (cursor.column + 1);
         }
     }
 })
