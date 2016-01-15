@@ -25,6 +25,9 @@
     "electron-prebuilt": "^0.36.0"
   },
   "dependencies": {
+    "ace-editor-builds": "^1.2.0",
+    "bootstrap": "^3.3.6",
+    "font-awesome": "^4.5.0",
     "jquery": "^2.2.0",
     "marked": "^0.3.5",
     "vue": "^1.0.14"

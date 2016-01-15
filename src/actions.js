@@ -18,7 +18,7 @@ function loadFileDialog() {
 function loadFile(fileName) {
     fs.readFile(fileName, 'utf-8', function (err, data) {
         if (err) dialog.showErrorBox("File Open Error", err.message);
-        vm.input = data;
+        vm.loadContent(data);
         currentFileName = fileName;
         remote.getCurrentWindow().setTitle(currentFileName);
     });
@@ -38,7 +38,7 @@ function saveFileDialog() {
 }
 
 function saveFile(fileName) {
-    fs.writeFile(fileName, vm.input, function (err) {
+    fs.writeFile(fileName, vm.saveContent(), function (err) {
         if (err) dialog.showErrorBox("File Save Error", err.message);
         currentFileName = fileName;
         remote.getCurrentWindow().setTitle(currentFileName);

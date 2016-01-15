@@ -3,18 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <title>Mditor</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
-    <div id="editor">
-        <textarea v-model="input" debounce="100"></textarea>
-        <div v-html="input | marked"></div>
-    </div>
+    <table class="table ui">
+        <thead>
+            <tr>
+                <th colspan="2">
+                    <div class="btn-toolbar pull-right" role="toolbar">
+                        <div class="btn-group" role="group">
+                            <a @click="togglePreview" data-toggle="tooltip" data-placement="bottom" title="Preview" class="btn btn-default">
+                                <i class="fa fa-eye" v-show="!showPreview"></i>
+                                <i class="fa fa-eye-slash" v-show="showPreview"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group" role="group">
+                            <a @click="undo" data-toggle="tooltip" data-placement="bottom" title="Undo" class="btn btn-default"><i class="fa fa-undo"></i></a>
+                            <a @click="redo" data-toggle="tooltip" data-placement="bottom" title="Redo" class="btn btn-default"><i class="fa fa-repeat"></i></a>
+                        </div>
+
+                        <div class="btn-group" role="group">
+                            <a @click="setHeader(1)" data-toggle="tooltip" data-placement="bottom" title="Header 1" class="btn btn-default"><strong>H1</strong></a>
+                            <a @click="setHeader(2)" data-toggle="tooltip" data-placement="bottom" title="Header 2" class="btn btn-default"><strong>H2</strong></a>
+                            <a @click="setHeader(3)" data-toggle="tooltip" data-placement="bottom" title="Header 3" class="btn btn-default"><strong>H3</strong></a>
+                        </div>
+
+                        <div class="btn-group" role="group">
+                            <a @click="setBold" data-toggle="tooltip" data-placement="bottom" title="Bold" class="btn btn-default"><i class="fa fa-bold"></i></a>
+                            <a @click="setItalic" data-toggle="tooltip" data-placement="bottom" title="Italic" class="btn btn-default"><i class="fa fa-italic"></i></a>
+                        </div>
+
+                        <div class="btn-group" role="group">
+                            <a @click="setUnordererList" data-toggle="tooltip" data-placement="bottom" title="Unorderer List" class="btn btn-default"><i class="fa fa-list-ul"></i></a>
+                            <a @click="setOrdererList" data-toggle="tooltip" data-placement="bottom" title="Orderer List" class="btn btn-default"><i class="fa fa-list-ol"></i></a>
+                        </div>
+
+                        <div class="btn-group" role="group">
+                            <a @click="addLink" data-toggle="tooltip" data-placement="bottom" title="Add Link" class="btn btn-default"><i class="fa fa-link"></i></a>
+                            <a @click="addImage" data-toggle="tooltip" data-placement="bottom" title="Add Image" class="btn btn-default"><i class="fa fa-picture-o"></i></a>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="no-padding"><div id="editor" style="width: 100%; height: 100%;"></div></td>
+                <td class="no-padding" v-show="showPreview"><div class="preview" v-html="input | marked"></div></td>
+            </tr>
+        </tbody>
+        <footer>
+            <tr>
+                <td colspan="2">
+                    <span class="pull-right">v. {{ ver }}</span>
+                    <span>{{ status }}</span>
+                </td>
+            </tr>
+        </footer>
+    </table>
+
     <script>window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');</script>
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="node_modules/vue/dist/vue.js"></script>
     <script type="text/javascript" src="node_modules/marked/marked.min.js"></script>
+    <script type="text/javascript" src="node_modules/ace-editor-builds/src-min/ace.js"></script>
+    <script type="text/javascript" src="node_modules/ace-editor-builds/src-min/mode-markdown.js"></script>
+    <script type="text/javascript" src="node_modules/ace-editor-builds/src-min/theme-monokai.js"></script>
+
     <script type="text/javascript" src="src/actions.js"></script>
     <script type="text/javascript" src="src/menu.js"></script>
     <script type="text/javascript" src="src/editor.js"></script>
+    <script type="text/javascript" src="src/toolbar.js"></script>
 </body>
 </html>
