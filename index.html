@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mditor</title>
+    <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+    <div id="editor">
+        <textarea v-model="input" debounce="100"></textarea>
+        <div v-html="input | marked"></div>
+    </div>
+    <script>window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');</script>
+    <script type="text/javascript" src="node_modules/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="node_modules/marked/marked.min.js"></script>
+    <script type="text/javascript" src="src/actions.js"></script>
+    <script type="text/javascript" src="src/menu.js"></script>
+    <script type="text/javascript" src="src/editor.js"></script>
+</body>
+</html>

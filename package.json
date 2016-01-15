@@ -1,0 +1,32 @@
+{
+  "name": "mditor",
+  "version": "0.1.0",
+  "description": "Markdown minimalistic editor",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlopezcur/mditor.git"
+  },
+  "keywords": [
+    "Electron",
+    "MarkDown",
+    "Minimal"
+  ],
+  "author": "Javier López Úbeda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jlopezcur/mditor/issues"
+  },
+  "homepage": "https://github.com/jlopezcur/mditor#readme",
+  "devDependencies": {
+    "electron-prebuilt": "^0.36.0"
+  },
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "marked": "^0.3.5",
+    "vue": "^1.0.14"
+  }
+}
